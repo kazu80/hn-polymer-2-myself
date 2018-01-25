@@ -1,6 +1,6 @@
 <!doctype html>
-<html lang="en">
-  <head>
+<html lang="ja">
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
@@ -13,8 +13,81 @@
     <script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
 
     <link rel="import" href="/src/hn-polymer-2-myself-app/hn-polymer-2-myself-app.html">
-  </head>
-  <body>
-    <hn-polymer-2-myself-app></hn-polymer-2-myself-app>
-  </body>
+
+    <style>
+        body {
+            font-family : -apple-system, BlinkMacSystemFont, "Roboto", "Noto", sans-serif;
+            min-height  : 100vh;
+            max-width   : 1280px;
+            margin      : 0 auto;
+            padding     : 0;
+        }
+
+        nav {
+            background-color : #283593;
+            height           : 54px;
+            padding          : 16px 0 16px 1em;
+            box-sizing       : border-box;
+            white-space      : nowrap;
+        }
+
+        nav > a {
+            color           : white;
+            display         : inline-block;
+            vertical-align  : middle;
+            font-weight     : 300;
+            letter-spacing  : .075em;
+            margin-right    : 0.5em;
+            text-decoration : none;
+        }
+
+        .logo {
+            height         : 24px;
+            width          : 24px;
+            vertical-align : middle;
+            fill           : white;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform : scale(1);
+                opacity   : 0;
+            }
+            50% {
+                transform : scale(1.2);
+                opacity   : 1;
+            }
+        }
+
+        .loading {
+            text-align : center;
+        }
+
+        .loading > * {
+            animation   : pulse 1s infinite ease-in-out;
+            will-change : opacity, transform;
+            display     : inline-block;
+            padding     : 64px;
+        }
+
+        .hn-top .top, .hn-new .new, .hn-ask .ask, .hn-show .show, .hn-jobs .jobs {
+            color : #f5d328;
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <a href="https://www.polymer-project.org" target="_blank" rel="noopener" title="Polymer Logo">
+        <svg class="logo" viewBox="0 0 24 24">
+            <path d="M19 4h-4L7.11 16.63 4.5 12 9 4H5L.5 12 5 20h4l7.89-12.63L19.5 12 15 20h4l4.5-8z"/>
+        </svg>
+    </a>
+    <a class="top" href="/top/1">Top</a>
+    <a class="new" href="/new/1">New</a>
+    <a class="ask" href="/ask/1">Ask</a>
+    <a class="show" href="/show/1">Show</a>
+    <a class="jobs" href="/jobs/1">Jobs</a>
+</nav>
+<hn-polymer-2-myself-app></hn-polymer-2-myself-app>
+</body>
 </html>
