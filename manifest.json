@@ -1,0 +1,6 @@
+{
+  "name": "hn-polymer-2-myself",
+  "short_name": "hn-polymer-2-myself",
+  "start_url": "/",
+  "display": "standalone"
+}
