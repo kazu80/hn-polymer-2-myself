@@ -1,0 +1,26 @@
+{
+  "name": "hn-polymer-2-myself",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "@polymer/polymer": "^2.0.2",
+    "@webcomponents/webcomponentsjs": "^1.0.7"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://monkick@github.com/monkick/hn-polymer-2-myself.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/monkick/hn-polymer-2-myself/issues"
+  },
+  "homepage": "https://github.com/monkick/hn-polymer-2-myself#readme"
+}

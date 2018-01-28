@@ -1,0 +1,16 @@
+<link rel="import" href="../node_modules/@polymer/polymer/polymer-element.html">
+<dom-module id="hn-app">
+    <template strip-whitespace>
+        <style>
+        </style>
+    </template>
+    <script>
+        (() => {
+            class HnApp extends Polymer.Element {
+                static get is () { return 'hn-app'; }
+            }
+
+            window.customElements.define(HnApp.is, HnApp);
+        })();
+    </script>
+</dom-module>
