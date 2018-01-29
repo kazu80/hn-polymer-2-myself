@@ -1,4 +1,6 @@
 <link rel="import" href="../node_modules/@polymer/polymer/polymer-element.html">
+<link rel="import" href="simple-router.html">
+
 <dom-module id="hn-app">
     <template strip-whitespace>
         <style>
@@ -27,6 +29,39 @@
                 color : var(--detail-font-color);
             }
         </style>
+
+        <simple-router path="{{_path}}"></simple-router>
+        <slot></slot>
+        <div id="views">
+            <!-- page-size hardcoded to 30, but ideally would be provided by data source -->
+            <hn-list
+                    class$="[[_viewClass('list', _view, _loading)]]"
+                    list="[[_listData]]"
+                    type="[[_listType]]"
+                    page="[[_listPage]]"
+                    page-size="30">
+            </hn-list>
+            <hn-item
+                    class$="[[_viewClass('item', _view, _loading)]]"
+                    item="[[_itemData]]">
+            </hn-item>
+            <hn-user
+                    class$="[[_viewClass('user', _view, _loading)]]"
+                    user="[[_userData]]">
+            </hn-user>
+            <hn-404
+                    class$="[[_viewClass('404', _view, _loading)]]">
+            </hn-404>
+            <hn-offline
+                    class$="[[_viewClass('offline', _view, _loading)]]"
+                    on-refresh="_refreshRoute">
+            </hn-offline>
+        </div>
+
+        <div class="loading" hidden$="[[!_loading]]">
+            <slot name="load"></slot>
+        </div>
+
     </template>
     <script>
         (() => {
