@@ -1,4 +1,5 @@
 <link rel="import" href="../node_modules/@polymer/polymer/polymer-element.html">
+<link rel="import" href="../node_modules/@polymer/polymer/lib/utils/import-href.html">
 <link rel="import" href="simple-router.html">
 
 <dom-module id="hn-app">
@@ -67,6 +68,16 @@
         (() => {
             class HnApp extends Polymer.Element {
                 static get is () { return 'hn-app'; }
+
+                static get observers () {
+                    return [
+                        '_routeChanged(_path)',
+                    ];
+                }
+
+                _routeChanged (path) {
+                    console.log ('routeChange');
+                }
             }
 
             window.customElements.define(HnApp.is, HnApp);
