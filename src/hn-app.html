@@ -1,6 +1,7 @@
 <link rel="import" href="../node_modules/@polymer/polymer/polymer-element.html">
 <link rel="import" href="../node_modules/@polymer/polymer/lib/utils/import-href.html">
 <link rel="import" href="simple-router.html">
+<script src="fetch.js"></script>
 
 <dom-module id="hn-app">
     <template strip-whitespace>
@@ -66,12 +67,24 @@
     </template>
     <script>
         (() => {
+            // base fetch url
+            // url for server proxy to api, when running locally switch url's
+            // const fetchBaseUrl = '/hn';
+            const fetchBaseUrl = 'https://node-hnapi.herokuapp.com';
+
+            // custom list-type for route page
+            const pageToListType = {
+                top: 'news',
+                new: 'newest'
+            }
+
             class HnApp extends Polymer.Element {
                 static get is () { return 'hn-app'; }
 
                 static get observers () {
                     return [
                         '_routeChanged(_path)',
+                        '_fetchList(_listPath, _listPage)',
                     ];
                 }
 
@@ -115,6 +128,36 @@
                     }
                     pending._view = props._view;
                     this.setProperties (props);
+                }
+
+                _fetchList (path, page) {
+                    if (path) {
+                        let url = `${fetchBaseUrl}/${path}`;
+                        if (page) {
+                            url += `?page=${page}`;
+                        }
+                        this._fetch (url)
+                            .then (data => this._listData = data, () => this._listPage = null);
+                    }
+                }
+
+                _fetch (url) {
+                    // scroll to top when fetching
+                    document.body.scrollTop = 0;
+                    this._loading = true;
+                    return fetch (url).then (response => {
+                        return response.json ().then (data => {
+                            this._pendingFetch = null;
+                            this._loading = false;
+                            return data;
+                        });
+                    }, reject => {
+                        if (!navigator.onLine) {
+                            this._view = 'offline';
+                        }
+                        this._loading = false;
+                        return Promise.reject (reject);
+                    });
                 }
             }
 
