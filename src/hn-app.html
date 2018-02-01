@@ -86,6 +86,7 @@
                         '_routeChanged(_path)',
                         '_fetchList(_listPath, _listPage)',
                         '_fetchItem(_itemId)',
+                        '_fetchUser(_userName)',
                     ];
                 }
 
@@ -146,6 +147,13 @@
                     if (id) {
                         this._fetch (`${fetchBaseUrl}/item/${id}`)
                             .then (data => this._itemData = data, (e) => this._itemId = null);
+                    }
+                }
+
+                _fetchUser (user) {
+                    if (user) {
+                        this._fetch (`${fetchBaseUrl}/user/${user}`)
+                            .then (data => this._userData = data, () => this._userName = null);
                     }
                 }
 
