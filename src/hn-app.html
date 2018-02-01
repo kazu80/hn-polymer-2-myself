@@ -85,6 +85,7 @@
                     return [
                         '_routeChanged(_path)',
                         '_fetchList(_listPath, _listPage)',
+                        '_fetchItem(_itemId)',
                     ];
                 }
 
@@ -138,6 +139,13 @@
                         }
                         this._fetch (url)
                             .then (data => this._listData = data, () => this._listPage = null);
+                    }
+                }
+
+                _fetchItem (id) {
+                    if (id) {
+                        this._fetch (`${fetchBaseUrl}/item/${id}`)
+                            .then (data => this._itemData = data, (e) => this._itemId = null);
                     }
                 }
 
