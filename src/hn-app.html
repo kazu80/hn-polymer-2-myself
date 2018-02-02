@@ -76,7 +76,7 @@
             const pageToListType = {
                 top: 'news',
                 new: 'newest'
-            }
+            };
 
             class HnApp extends Polymer.Element {
                 static get is () { return 'hn-app'; }
@@ -87,6 +87,7 @@
                         '_fetchList(_listPath, _listPage)',
                         '_fetchItem(_itemId)',
                         '_fetchUser(_userName)',
+                        '_viewChanged(_view)',
                     ];
                 }
 
@@ -174,6 +175,16 @@
                         this._loading = false;
                         return Promise.reject (reject);
                     });
+                }
+
+                _viewChanged (view) {
+                    // Load page import on demand. Show 404 page if fails
+                    const resolvedPageUrl = this.resolveUrl ('hn-' + view + '.html');
+                    Polymer.importHref (resolvedPageUrl, null, () => this._view = '404', true);
+                }
+
+                _viewClass (name, view, loading) {
+                    return name === view && !loading ? 'selectedView' : '';
                 }
             }
 
