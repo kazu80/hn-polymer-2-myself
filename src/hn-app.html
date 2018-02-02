@@ -88,6 +88,7 @@
                         '_fetchItem(_itemId)',
                         '_fetchUser(_userName)',
                         '_viewChanged(_view)',
+                        '_selectedClass(_view, _listType)'
                     ];
                 }
 
@@ -185,6 +186,20 @@
 
                 _viewClass (name, view, loading) {
                     return name === view && !loading ? 'selectedView' : '';
+                }
+
+                // indicate selected list/tab; here we throw a class on body
+                // to be able to coordinate with the nav bar which is in body.
+                _selectedClass (view, page) {
+                    let root = document.body;
+
+                    if (this._prevSelectedClass) {
+                        root.classList.remove (this._prevSelectedClass);
+                    }
+                    if (view === 'list') {
+                        this._prevSelectedClass = `hn-${page}`;
+                        root.classList.add (this._prevSelectedClass);
+                    }
                 }
             }
 
