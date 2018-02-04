@@ -1,4 +1,5 @@
 <link rel="import" href="../node_modules/@polymer/polymer/polymer-element.html">
+<link rel="import" href="../node_modules/@polymer/polymer/lib/elements/dom-repeat.html">
 
 <dom-module id="hn-list">
     <template strip-whitespace>
@@ -81,11 +82,53 @@
                 text-align : center;
             }
         </style>
+        <ul>
+            <template is="dom-repeat" items="[[list]]" initial-count="10">
+                <li>
+                    <span class="index">[[_computeIndex(pageSize, page, index)]]</span>
+                    <div class="title">
+                        <a href="[[item.url]]">[[item.title]]</a>
+                        <span class="domain">([[item.domain]])</span>
+                        <div class="info">
+                            [[item.points]] points by
+                            <a href="/user/[[item.user]]">[[item.user]]</a>
+                            [[item.time_ago]]
+                            <span class="spacer">|</span>
+                            <a href="/item/[[item.id]]">[[item.comments_count]] comments</a>
+                        </div>
+                    </div>
+                </li>
+            </template>
+        </ul>
+
+        <div class="forwardback">
+            <a class="prev" href="/[[type]]/[[_computePrevPage(page)]]" aria-label="Previous Page">◀ Previous</a>
+            <span>Page [[page]]</span>
+            <a class="next" href="/[[type]]/[[_computeNextPage(page)]]" aria-label="Next Page">Next ▶</a>
+        </div>
     </template>
     <script>
         (function () {
             class HnList extends Polymer.Element {
                 static get is () { return 'hn-list'; }
+
+                static get properties () {
+                    return {
+                        pageSize: Number,
+                    };
+                }
+
+                _computeIndex (pageSize, page, index) {
+                    return pageSize * (page - 1) + index + 1;
+                }
+
+                _computeNextPage (page) {
+                    return parseInt (page || 1) + 1;
+                }
+
+                _computePrevPage (page) {
+                    return (parseInt (page || 2) - 1) || 1;
+                }
             }
 
             window.customElements.define (HnList.is, HnList);
