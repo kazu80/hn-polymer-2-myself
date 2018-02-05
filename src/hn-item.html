@@ -1,0 +1,53 @@
+<link rel="import" href="../node_modules/@polymer/polymer/polymer-element.html">
+
+<dom-module id="hn-item">
+    <template strip-whitespace>
+        <style>
+            :host {
+                display   : block;
+                font-size : var(--detail-font-size);
+            }
+
+            a {
+                color : currentColor;
+            }
+
+            .title, .domain {
+                font-size : 1rem;
+            }
+
+            .title {
+                text-decoration : none;
+            }
+
+            .domain {
+                padding-left : 4px;
+                color        : var(--detail-font-color);
+            }
+
+            .spacer {
+                padding-right : .5em;
+            }
+
+            .meta {
+                padding       : 8px 0;
+                color         : var(--detail-font-color);
+                border-bottom : var(--separator-border);
+            }
+
+            .user {
+                color : var(--detail-font-color);
+            }
+        </style>
+    </template>
+
+    <script>
+        (function () {
+            class HnItem extends Polymer.Element {
+                static get is () { return 'hn-item'; }
+            }
+
+            customElements.define (HnItem.is, HnItem);
+        }) ();
+    </script>
+</dom-module>
