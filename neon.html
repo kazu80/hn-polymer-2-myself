@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>neon</title>
+    <link href="https://fonts.googleapis.com/css?family=Geostar|Megrim|Monoton" rel="stylesheet">
+    <style>
+        html, body {
+            width  : 100%;
+            height : 100%;
+        }
+
+        body {
+            /*
+            font-family: 'Monoton', cursive;
+            font-family: 'Geostar', cursive;
+            font-family: 'Megrim', cursive;
+            */
+            font-family      : 'Geostar', cursive;
+
+            background-color : #ffffff;
+        }
+
+        main {
+            position : relative;
+            width    : 100%;
+            height   : 100%;
+        }
+
+        .neon {
+            position    : absolute;
+            top         : 50%;
+            left        : 50%;
+            transform   : translate(-50%, -50%);
+            color       : #f535aa;
+            font-size   : 2vw;
+            text-shadow : 1px 1px 5px #f535aa, -1px -1px 5px #f535aa;
+            font-family : 'Monoton', cursive;
+        }
+
+        .neon-purple {
+            color       : #6e0dd0;
+            text-shadow : 1px 1px 5px #6e0dd0, -1px -1px 5px #6e0dd0;
+        }
+
+        .message {
+            position    : absolute;
+            top         : 60%;
+            left        : 60%;
+            transform   : translate(-50%, -50%) rotate(0deg);
+            color       : #36f57f;
+            font-size   : 2vw;
+            text-shadow : 1px 1px 5px #36f57f, -1px -1px 5px #36f57f;
+        }
+
+        .next {
+            top : 65%;
+        }
+    </style>
+</head>
+<body>
+<main>
+    <div class="neon neon-purple">Poly Live Coding</div>
+    <!--
+    <div class="message">To be continue...</div>
+    <div class="message next">See you next time!</div>
+    -->
+</main>
+</body>
+</html>

@@ -1,4 +1,5 @@
 <link rel="import" href="../node_modules/@polymer/polymer/polymer-element.html">
+<link rel="import" href="../node_modules/@polymer/polymer/lib/elements/dom-repeat.html">
 
 <dom-module id="hn-item">
     <template strip-whitespace>
@@ -39,6 +40,21 @@
                 color : var(--detail-font-color);
             }
         </style>
+        <a class="title" href$="[[item.url]]" hidden="[[item.content]]">[[item.title]]</a>
+        <div class="title" hidden="[[!item.content]]">[[item.title]]</div>
+        <span class="domain" hidden="[[!item.domain]]">([[item.domain]])</span>
+        <div hidden="[[!item.content]]" inner-h-t-m-l="[[item.content]]"></div>
+        <div class="meta">
+            [[item.points]] points by
+            <a class="user" href$="/user/[[item.user]]">[[item.user]]</a>
+            [[item.time_ago]]
+            <span class="spacer">|</span>
+            <span>[[item.comments_count]] comments</span>
+        </div>
+
+        <template is="dom-repeat" items="[[item.comments]]" initial-count="5">
+            <hn-comment comment=[[item]]></hn-comment>
+        </template>
     </template>
 
     <script>
