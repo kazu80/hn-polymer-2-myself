@@ -1,0 +1,60 @@
+<link rel="import" href="../node_modules/@polymer/polymer/polymer-element.html">
+
+<dom-module id="hn-comment">
+    <template strip-whitespace>
+        <style>
+            :host {
+                display : block;
+            }
+
+            a {
+                color : currentColor;
+            }
+
+            .header {
+                padding : 8px 0;
+            }
+
+            .header > * {
+                margin-right : .25rem;
+                color        : var(--detail-font-color);
+            }
+
+            .toggle {
+                user-select      : none;
+                background-color : transparent;
+                border           : none;
+                padding          : 0;
+            }
+
+            .comment {
+                border-bottom : var(--separator-border);
+            }
+
+            .comment > p {
+                overflow-wrap : break-word;
+            }
+
+            .comment pre {
+                white-space : pre-line;
+            }
+
+            .comment > p:first-of-type {
+                margin-top : 0;
+            }
+
+            .comments {
+                padding-left : 8px;
+            }
+        </style>
+    </template>
+    <script>
+        (function () {
+            class HnComment extends Polymer.Element {
+                static get is () { return 'hn-comment'; }
+            }
+
+            customElements.define (HnComment.is, HnComment);
+        }) ();
+    </script>
+</dom-module>
