@@ -47,6 +47,18 @@
                 padding-left : 8px;
             }
         </style>
+        <div class="header">
+            <button class="toggle" on-click="_toggleCollapse" aria-label$="[[_collapseTitle]]">[[_collapseString]]
+            </button>
+            <a href$="/user/[[comment.user]]">[[comment.user]]</a>
+            <a href$="/item/[[comment.id]]">[[comment.time_ago]]</a>
+        </div>
+        <div class="comment" inner-h-t-m-l="[[comment.content]]" hidden$="[[collapsed]]"></div>
+        <div class="comments" hidden$="[[collapsed]]">
+            <template is="dom-repeat" items="[[comment.comments]]" initial-count="3">
+                <hn-comment comment="[[item]]"></hn-comment>
+            </template>
+        </div>
     </template>
     <script>
         (function () {
