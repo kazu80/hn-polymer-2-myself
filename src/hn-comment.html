@@ -64,6 +64,14 @@
         (function () {
             class HnComment extends Polymer.Element {
                 static get is () { return 'hn-comment'; }
+
+                constructor () {
+                    super ();
+                    this.collapsed = false;
+                    this._collapseString = '[–]';
+                    this._collapseTitle = 'Hide comments';
+                    this._commentThreadSize = 0;
+                }
             }
 
             customElements.define (HnComment.is, HnComment);
