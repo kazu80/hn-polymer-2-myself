@@ -24,6 +24,29 @@
                 white-space : pre-line;
             }
         </style>
+        <table>
+            <tr>
+                <td>User:</td>
+                <td>[[user.id]]</td>
+            </tr>
+            <tr>
+                <td>Created:</td>
+                <td>[[user.created]]</td>
+            </tr>
+            <tr>
+                <td>Karma:</td>
+                <td>[[user.karma]]</td>
+            </tr>
+        </table>
+
+        <div class="about" hidden$="[[!user.about]]" inner-h-t-m-l="[[user.about]]"></div>
+        <div class="links">
+            <a href$="[[_hnLink('submitted', user.id)]]">submissions</a>
+            |
+            <a href$="[[_hnLink('threads', user.id)]]">comments</a>
+            |
+            <a href$="[[ _hnLink('favorites', user.id)]]">favorites</a>
+        </div>
     </template>
     <script>
         (function () {
