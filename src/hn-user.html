@@ -3,6 +3,26 @@
 <dom-module id="hn-user">
     <template strip-whitespace>
         <style>
+            :host {
+                display   : block;
+                font-size : var(--detail-font-size);
+            }
+
+            a {
+                color : currentColor;
+            }
+
+            .links {
+                padding : 8px 0;
+            }
+
+            .about {
+                overflow-wrap : break-word;
+            }
+
+            .about pre {
+                white-space : pre-line;
+            }
         </style>
     </template>
     <script>
