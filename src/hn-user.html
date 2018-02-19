@@ -50,7 +50,15 @@
     </template>
     <script>
         (function () {
+            class HnUser extends Polymer.Element {
+                static get is () { return 'hn-user' }
 
+                _hnLink (type, id) {
+                    return `https://news.ycombinator.com/${type}?id=${id}`;
+                }
+            }
+
+            window.customElements.define (HnUser.is, HnUser);
         }) ();
     </script>
 </dom-module>
